@@ -1,0 +1,8 @@
+<button
+  [type]="type()"
+  [class]="'button button-' + variant() + ' button-' + size()"
+  [disabled]="disabled()"
+  (click)="onClick()"
+>
+  {{ label() }}
+</button>

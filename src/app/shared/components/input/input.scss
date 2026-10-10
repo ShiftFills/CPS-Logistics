@@ -1,0 +1,106 @@
+.input-container {
+  width: 100%;
+}
+
+.position-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--label-gap);
+}
+
+.position-left {
+  display: flex;
+  align-items: center;
+  gap: var(--label-gap);
+}
+
+.position-right {
+  display: flex;
+  align-items: center;
+  gap: var(--label-gap);
+}
+
+/* Input wrapper */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Input */
+input {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: var(--input-padding);
+  padding-left: 40px;
+  padding-right: 45px;
+
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--input-radius);
+
+  font-size: var(--input-font-size);
+
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  background-color: var(--color-input-background);
+  color: var(--color-text);
+}
+
+input:focus {
+  border-color: var(--color-input-border-focus);
+}
+
+input:disabled {
+  background-color: var(--color-input-disabled-background);
+  cursor: not-allowed;
+}
+
+input::placeholder {
+  color: var(--color-input-placeholder);
+}
+
+/* Left icon */
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: var(--color-input-placeholder);
+  font-size: 16px;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Password eye button */
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: 0;
+  background: transparent;
+
+  color: var(--color-input-icon);
+
+  padding: var(--input-password-toggle-padding);
+
+  cursor: pointer;
+  z-index: 3;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

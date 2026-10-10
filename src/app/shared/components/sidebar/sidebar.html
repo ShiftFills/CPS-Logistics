@@ -1,0 +1,104 @@
+
+
+
+<aside class="sidebar-container" [class.open]="isOpen">
+
+    <!-- Mobile Close Trigger -->
+    <button
+        class="mobile-close-btn"
+        (click)="onClose()"
+        aria-label="Close Sidebar">
+        <i class="icon icon-close"></i>
+    </button>
+
+
+    <!-- Brand Logo -->
+    <div class="sidebar-header">
+        <div class="logo-wrapper">
+            <div class="logo-mark">
+
+                <img
+                    class="logo-light"
+                    src="assets/images/Group 694.svg"
+                    alt="CPS Logistics">
+
+                <img
+                    class="logo-dark"
+                    src="assets/images/Group 695.svg"
+                    alt="CPS Logistics">
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-nav">
+
+        @for (section of menuSections; track section.title || section.items[0].route) {
+
+            <div
+                class="nav-section"
+                [class.nav-single-section]="!section.title">
+
+                <!-- Section Title -->
+                @if (section.title) {
+                    <div class="section-title">
+                        {{ section.title }}
+                    </div>
+                }
+
+
+                <!-- Menu Items -->
+                @for (item of section.items; track item.route) {
+
+                    <a
+                        class="nav-item"
+                        [routerLink]="item.route"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="onClose()">
+
+                        <!-- Light Mode Icon -->
+                        <img
+                            class="nav-icon icon-light"
+                            [src]="item.lightIcon"
+                            [alt]="item.label">
+
+                        <!-- Dark Mode Icon -->
+                        <img
+                            class="nav-icon icon-dark"
+                            [src]="item.darkIcon"
+                            [alt]="item.label">
+
+
+                        <!-- Menu Label -->
+                        <span class="nav-label">
+                            {{ item.label }}
+                        </span>
+
+
+                        <!-- Badge -->
+                        @if (item.badge) {
+                            <span class="badge badge-today">
+                                {{ item.badge }}
+                            </span>
+                        }
+
+
+                        <!-- Status Dot -->
+                        @if (item.showStatusDot) {
+                            <span class="status-dot"></span>
+                        }
+
+                    </a>
+
+                }
+
+            </div>
+
+        }
+
+    </nav>
+
+</aside>

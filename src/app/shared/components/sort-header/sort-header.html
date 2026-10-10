@@ -1,0 +1,23 @@
+﻿<span class="sort-icon" [class.sort-icon--dashboard]="iconStyle() === 'dashboard'">
+  @if (iconStyle() === 'dashboard') {
+    @if (direction() === 'asc') {
+      <img class="sort-arrow sort-arrow-up" src="assets/icons/up-arrow.svg" alt="" aria-hidden="true" />
+    } @else if (direction() === 'desc') {
+      <img class="sort-arrow sort-arrow-down" src="assets/icons/down-arrow.svg" alt="" aria-hidden="true" />
+    } @else {
+      <span class="sort-arrows-neutral" aria-hidden="true">
+        <img class="sort-arrow sort-arrow-up" src="assets/icons/up-arrow.svg" alt="" />
+        <img class="sort-arrow sort-arrow-down" src="assets/icons/down-arrow.svg" alt="" />
+      </span>
+    }
+  } @else {
+    @if (direction() === 'asc') {
+      ▲
+    } @else if (direction() === 'desc') {
+      ▼
+    } @else {
+      ⇅
+    }
+  }
+</span>
+

@@ -1,0 +1,193 @@
+.update-status-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 16px 12px;
+
+  > .row {
+    --bs-gutter-y: 10px;
+  }
+}
+
+.feedback-field {
+  .feedback-count {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    text-align: right;
+  }
+}
+
+.update-form-error {
+  margin: -4px 0 0;
+  color: var(--color-danger);
+  font-size: 11px;
+}
+
+.lead-history {
+  min-width: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+
+  h3 {
+    margin: 0 0 8px;
+    color: var(--color-heading);
+    font-size: 12px;
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.history-entry {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-header-bg);
+}
+
+.history-field {
+  min-width: 0;
+}
+
+.history-field--feedback {
+  grid-column: 1 / -1;
+}
+
+.history-label,
+.history-value {
+  display: block;
+}
+
+.history-label {
+  margin-bottom: 2px;
+  color: var(--color-text-subtle);
+  font-size: 8px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.history-value {
+  overflow-wrap: anywhere;
+  color: var(--color-text);
+  font-size: 10px;
+}
+
+.history-empty {
+  margin: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--color-header-bg);
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+.update-status-actions {
+  justify-content: flex-end;
+}
+
+.update-status-modal ::ng-deep .modal-header {
+  padding: 10px 16px;
+}
+
+.update-status-modal ::ng-deep .modal {
+  min-height: min(520px, calc(100dvh - 16px));
+  box-sizing: border-box;
+}
+
+.update-status-modal ::ng-deep .modal-header h2 {
+  font-size: 13px;
+}
+
+.update-status-modal ::ng-deep .close-button {
+  width: 26px;
+  height: 26px;
+  font-size: 18px;
+}
+
+.update-status-modal ::ng-deep .modal-body app-input.form-field .label,
+.update-status-modal ::ng-deep .modal-body app-select.form-field .label,
+.update-status-modal ::ng-deep .modal-body app-date-picker.form-field label,
+.update-status-modal ::ng-deep .modal-body app-textarea label {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.update-status-modal ::ng-deep .modal-body app-input.form-field .input-wrapper input,
+.update-status-modal ::ng-deep .modal-body app-select.form-field .select-trigger,
+.update-status-modal ::ng-deep .modal-body app-date-picker.form-field input[type='date'] {
+  height: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.update-status-modal ::ng-deep .modal-body app-textarea textarea {
+  min-height: 54px;
+  height: 54px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.update-status-modal ::ng-deep .modal-body .feedback-field app-textarea .textarea-container {
+  gap: 5px;
+}
+
+.update-status-modal ::ng-deep .modal-body app-badge .badge {
+  padding: 3px 7px;
+  font-size: 9px;
+}
+
+.update-status-modal ::ng-deep .modal-body .update-status-actions app-button .button {
+  width: auto;
+  min-width: 82px;
+  height: 28px;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .history-entry {
+    grid-template-columns: minmax(62px, 0.9fr) minmax(78px, 1fr) minmax(110px, 2fr) minmax(46px, 0.6fr) minmax(68px, 0.9fr);
+    gap: 6px;
+  }
+
+  .history-field--feedback {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .update-status-form {
+    gap: 8px;
+    padding: 9px 12px 10px;
+  }
+
+  .history-entry {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .update-status-modal ::ng-deep .modal-header {
+    padding: 9px 12px;
+  }
+
+  .update-status-modal ::ng-deep .modal-body .update-status-actions app-button,
+  .update-status-modal ::ng-deep .modal-body .update-status-actions app-button .button {
+    width: 100%;
+  }
+}

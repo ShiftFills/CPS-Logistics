@@ -1,0 +1,618 @@
+// ============================================================
+// Dashboard Header
+// ============================================================
+.dashboard-header {
+  &__actions {
+
+    /* AI Pricing Inquiry Button */
+    .ai-inquiry-btn {
+      background-color: var(--color-accent-soft);
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent-border);
+      border-radius: 10px;
+      padding: 8px 18px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+
+      .icon {
+        font-size: 1rem;
+        color: var(--color-accent);
+      }
+
+      &:hover {
+        background-color: var(--color-accent-light);
+        border-color: var(--color-accent);
+      }
+    }
+
+    /* Date Pill */
+    .date-pill {
+      background-color: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+
+      .icon {
+        color: var(--color-card-title);
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+/* Responsive Handling */
+@media (max-width: 575.98px) {
+  .dashboard-header__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+// ============================================================
+// Local aliases (all values come from _colors.scss)
+// ============================================================
+:host {
+  --color-converted: var(--chart-green);
+  --color-followup: var(--chart-blue);
+  --color-negotiation: var(--chart-purple);
+  --color-rejected: var(--chart-rose);
+  --color-orange: var(--color-accent); // kept so old usages follow the brand color
+  --card-border-radius: 12px;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.fs-7 {
+  font-size: 0.8125rem;
+}
+
+// ============================================================
+// Card Standard Layout
+// ============================================================
+.dashboard-card,
+.kpi-card {
+  border-radius: var(--card-border-radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--card-shadow);
+  background-color: var(--color-card-bg);
+  overflow: hidden; // keeps the tinted table header inside the rounded corners
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-card-title);
+
+  &--lg {
+    font-size: 1.22rem;
+  }
+}
+
+.action-link {
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+}
+
+// ============================================================
+// KPI Top Cards
+// ============================================================
+.kpi-card {
+  .kpi-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.375rem;
+  }
+
+  .bg-blue-light {
+    background-color: var(--chart-blue-bg);
+    color: var(--chart-blue);
+  }
+
+  .bg-green-light {
+    background-color: var(--chart-green-bg);
+    color: var(--chart-green);
+  }
+
+  .bg-orange-light {
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+  }
+
+  .bg-pink-light {
+    background-color: var(--chart-rose-bg);
+    color: var(--chart-rose);
+  }
+
+  .bg-purple-light {
+    background-color: var(--chart-purple-bg);
+    color: var(--chart-purple);
+  }
+
+  .kpi-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .kpi-label {
+    font-size: 1rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+
+  .kpi-trend {
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    &.trend-up {
+      color: var(--color-converted);
+    }
+
+    &.trend-down {
+      color: var(--color-rejected);
+    }
+
+    .kpi-trend-note {
+      color: var(--color-text-subtle);
+      font-weight: 500; // optional: lighter than the percentage
+    }
+  }
+}
+
+// ============================================================
+// Donut Chart (Success Rate)
+// ============================================================
+.donut-chart-wrapper {
+  width: 170px;
+  height: 170px;
+  flex-shrink: 0;
+}
+
+.donut-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible; // safety net so the ring is never clipped
+  transform: rotate(-90deg); // start at 12 o'clock
+}
+
+.donut-segment {
+  stroke-width: 5; // ring thickness
+  stroke-linecap: butt; // flat ends
+  cursor: pointer;
+  transition: opacity 0.2s, stroke-width 0.2s;
+
+  &:hover {
+    stroke-width: 6;
+  }
+
+  &.dimmed {
+    opacity: 0.35;
+  }
+}
+
+// Even gaps between donut segments
+.donut-separator {
+  stroke: var(--color-card-bg); // must match the card background
+  stroke-width: 0.8; // gap size
+  pointer-events: none; // so hover still reaches the segments
+}
+
+.donut-center-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; // so hover reaches the ring
+  text-align: center;
+}
+
+.donut-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1.1;
+}
+
+.donut-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-card-title);
+  max-width: 80px;
+  text-transform: uppercase;
+}
+
+// Legend used by the donut (vertical list)
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--color-card-title);
+  white-space: nowrap;
+
+  li {
+    cursor: default;
+    transition: opacity 0.2s;
+
+    &.dimmed {
+      opacity: 0.4;
+    }
+  }
+}
+
+// ============================================================
+// Pie Chart (Lead Source)
+// ============================================================
+.pie-chart-wrapper {
+  width: 150px;
+  height: 150px;
+}
+
+.pie-chart {
+  width: 100%;
+  height: 100%;
+  overflow: visible; // so a slice can move outward without being clipped
+}
+
+.pie-slice {
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &.dimmed {
+    opacity: 0.4;
+  }
+}
+
+.pie-path {
+  stroke: var(--color-card-bg); // separators; must match the card background
+  stroke-width: 1; // separator thickness
+  stroke-linejoin: round;
+}
+
+.pie-label {
+  font-size: 6px;
+  font-weight: 700;
+  fill: var(--color-white);
+  pointer-events: none; // so hover goes to the slice, not the text
+}
+
+.pie-legend {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  gap: 10px 36px;
+  font-size: 0.8125rem;
+  color: var(--color-card-title);
+  white-space: nowrap;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    transition: opacity 0.2s;
+
+    &.dimmed {
+      opacity: 0.4;
+    }
+  }
+}
+
+// ============================================================
+// Chart Legends (shared)
+// ============================================================
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.bg-converted {
+  background-color: var(--color-converted);
+}
+
+.bg-followup {
+  background-color: var(--color-followup);
+}
+
+.bg-negotiation {
+  background-color: var(--color-negotiation);
+}
+
+.bg-rejected {
+  background-color: var(--color-rejected);
+}
+
+.bg-blue {
+  background-color: var(--chart-blue);
+}
+
+.bg-orange {
+  background-color: var(--color-accent);
+}
+
+.bg-green {
+  background-color: var(--chart-green);
+}
+
+.bg-purple {
+  background-color: var(--chart-purple);
+}
+
+// ============================================================
+// Custom Tables
+// ============================================================
+.table-custom {
+  thead {
+    th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-text-subtle); // header text
+      background-color: var(--color-control-bg); // tinted header row
+      letter-spacing: 0.5px;
+      padding: 10px 12px;
+      border-bottom: 0;
+      white-space: nowrap; // keeps "ASSIGNED CONVERTED" on one line
+    }
+  }
+
+  tbody {
+    td {
+      padding: 12px;
+      border-bottom: 1px solid var(--color-divider-soft);
+    }
+
+    tr {
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        background-color: var(--color-hover-bg);
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+// ============================================================
+// Employee Performance: conversion rate bar
+// ============================================================
+.rate-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  width: 36px;
+  flex-shrink: 0;
+  color: var(--color-card-title);
+  font-variant-numeric: tabular-nums; // digits line up between rows
+}
+
+.rate-track {
+  flex: 1;
+  min-width: 80px;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--color-control-bg);
+  overflow: hidden;
+}
+
+.rate-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-accent-gradient-start), var(--color-accent));
+  transform-origin: left center;
+  animation: growBar 0.8s ease-out both;
+}
+
+@keyframes growBar {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rate-fill {
+    animation: none;
+  }
+}
+
+// Kept for any other progress bars in the project
+.custom-progress {
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--color-control-bg);
+  overflow: hidden;
+
+  .progress-bar {
+    border-radius: 4px;
+  }
+}
+
+
+.task-banner {
+  // defaults (overridden by the modifiers below)
+  --banner-bg: var(--tone-green-bg);
+  --banner-border: var(--tone-green-border);
+  --banner-accent: var(--pill-green-text);
+  --banner-icon-bg: var(--pill-green-bg);
+  --banner-badge-bg: var(--tone-green-badge-bg);
+
+  padding: 16px;
+  border-radius: 14px;
+  background-color: var(--banner-bg);
+  border: 1px solid var(--banner-border);
+
+  &.banner-success {
+    --banner-bg: var(--tone-green-bg);
+    --banner-border: var(--tone-green-border);
+    --banner-accent: var(--pill-green-text);
+    --banner-icon-bg: var(--pill-green-bg);
+    --banner-badge-bg: var(--tone-green-badge-bg);
+  }
+
+  &.banner-danger {
+    --banner-bg: var(--tone-red-bg);
+    --banner-border: var(--tone-red-border);
+    --banner-accent: var(--pill-rose-text);
+    --banner-icon-bg: var(--tone-red-icon-bg);
+    --banner-badge-bg: var(--tone-red-badge-bg);
+  }
+
+  // top row: icon + title/subtitle
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  // bottom row: value (left) + badge (right)
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .banner-icon-bg {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px; // rounded square, not a circle
+    background-color: var(--banner-icon-bg);
+    color: var(--banner-accent);
+    font-size: 1.125rem;
+
+    .icon {
+      color: inherit;
+    }
+  }
+
+  .banner-title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .banner-subtitle {
+    margin: 2px 0 0;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: var(--color-text-muted);
+  }
+
+  .banner-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: var(--banner-badge-bg);
+    color: var(--banner-accent);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    white-space: nowrap;
+
+    .icon {
+      font-size: 0.75rem;
+      color: inherit;
+    }
+
+    &__text {
+      margin-left: 2px;
+      font-weight: 400;
+      color: var(--color-text-muted);
+    }
+  }
+}
+
+.ai-inquiry-btn {
+  .ai-inquiry-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+  }
+}
+
+.date-pill {
+  .date-pill-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+  }
+}
+
+.trend-arrow {
+  display: inline-block;
+  width: 25px;
+  height: 23px;
+  margin-right: -3px;
+  vertical-align: -8px;
+  background-color: currentColor; // follows the green / red text color
+  -webkit-mask: url(/assets/icons/up-arrow.svg) center / contain no-repeat;
+  mask: url(/assets/icons/up-arrow.svg) center / contain no-repeat;
+
+  &.down {
+    -webkit-mask-image: url(/assets/icons/down-arrow.svg);
+    mask-image: url(/assets/icons/down-arrow.svg);
+  }
+}
+.banner-badge {
+  .trend-arrow {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    vertical-align: middle; // ignored if .banner-badge is display:flex, which is fine
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  min-width: 0;
+  font-family: var(--font-family, inherit);
+}
+
+.client-form-page {
+  width: 100%;
+}
+
+.form-page-header {
+  padding: 22px 26px 16px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.form-page-header h1 {
+  margin: 0;
+  color: #182238;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.client-form {
+  padding: 18px 26px 16px;
+}
+
+.form-actions {
+  margin-top: 22px;
+}
+
+@media (max-width: 575.98px) {
+  .form-page-header {
+    padding: 18px 18px 14px;
+  }
+
+  .client-form {
+    padding: 16px 18px 18px;
+  }
+
+  .form-actions {
+    margin-top: 18px;
+  }
+}

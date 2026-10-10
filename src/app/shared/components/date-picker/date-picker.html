@@ -1,0 +1,26 @@
+<div class="date-picker-container">
+
+  @if (label()) {
+    <label>
+      {{ label() }}
+
+      @if (required()) {
+        <span class="required">*</span>
+      }
+    </label>
+  }
+
+  <input
+    type="date"
+    [value]="value()"
+    [min]="min()"
+    [max]="max()"
+    [disabled]="disabled()"
+    [required]="required()"
+    (change)="onChange($event)"
+  />
+    @if (error()) {
+    <span class="field-error" role="alert">{{ error() }}</span>
+  }
+
+</div>

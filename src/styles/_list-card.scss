@@ -1,0 +1,18 @@
+// Shared surface for list screens: a white card holding a table and a pagination footer.
+.list-card {
+  background: var(--color-card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden; // keeps the tinted table header inside the rounded corners
+}
+
+.list-card__footer {
+  padding: 0 var(--card-padding) 20px;
+}
+
+// Same table spacing tweaks you added in leads.scss, now reusable
+.list-card app-table {
+  --table-cell-padding-x: 10px;
+  --table-header-cell-padding-x: 10px;
+  --table-header-cell-padding-y: 12px;
+}

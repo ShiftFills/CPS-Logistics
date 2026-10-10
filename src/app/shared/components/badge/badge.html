@@ -1,0 +1,14 @@
+@if (label()) {
+
+  <span
+    class="badge"
+    [class.badge-success]="type() === 'success'"
+    [class.badge-error]="type() === 'error'"
+    [class.badge-warning]="type() === 'warning'"
+    [class.badge-info]="type() === 'info'"
+    [class.badge-neutral]="type() === 'neutral'"
+  >
+    {{ label() }}
+  </span>
+
+}

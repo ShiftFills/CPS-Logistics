@@ -1,0 +1,26 @@
+<div
+  class="search-box"
+  [style.width]="width()"
+  [style.height]="height()">
+
+  <i class="search-icon" aria-hidden="true"></i>
+
+  <input
+    type="text"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    (input)="onInput($event)"
+  />
+
+  @if (value()) {
+    <button
+      type="button"
+      class="clear-button"
+      [disabled]="disabled()"
+      (click)="clearSearch()"
+      aria-label="Clear search">
+      ×
+    </button>
+  }
+</div>

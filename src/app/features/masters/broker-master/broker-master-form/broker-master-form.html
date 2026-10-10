@@ -1,0 +1,45 @@
+<div class="broker-form-page">
+  @if (!embedded()) {
+    <header class="form-page-header">
+      <h1>{{ isEdit() ? 'Update Broker' : 'Create Broker' }}</h1>
+    </header>
+  }
+
+  <form #brokerForm class="broker-form" (submit)="$event.preventDefault(); save(brokerForm)">
+    <div class="row gx-4 gy-3">
+      @for (field of fields; track field.key) {
+        <div class="col-12 col-sm-6 col-md-3">
+          @if (field.kind === 'select') {
+            <app-select
+              class="form-field"
+              [label]="field.label"
+              [required]="!!field.required"
+              [placeholder]="field.placeholder"
+              [options]="optionsFor(field.key)"
+              [value]="values()[field.key] ?? ''"
+              (valueChange)="updateValue(field.key, $event)">
+            </app-select>
+          } @else {
+            <app-input
+              class="form-field"
+              [label]="field.label"
+              [required]="!!field.required"
+              [placeholder]="field.placeholder"
+              [type]="field.type ?? 'text'"
+              [value]="values()[field.key] ?? ''"
+              (valueChange)="updateValue(field.key, $event)">
+            </app-input>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Remove stays in the DOM (hidden when creating) so the shared
+         .form-dialog button sizing, which relies on child position, still applies. -->
+    <div class="form-actions d-flex flex-wrap justify-content-end align-items-center gap-2">
+      <app-button class="remove-action" [class.d-none]="!isEdit()" label="Remove" variant="outline" (clicked)="remove()" />
+      <app-button label="Reset" variant="secondary" (clicked)="resetForm()" />
+      <app-button [label]="isEdit() ? 'Update' : 'Save'" variant="orange" type="submit" />
+    </div>
+  </form>
+</div>

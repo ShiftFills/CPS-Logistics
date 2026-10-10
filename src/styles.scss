@@ -1,0 +1,57 @@
+@use './styles/colors';
+@use './styles/spacing';
+@use './styles/typography';
+@use './styles/themes';
+@use './styles/icons';
+@use './styles/form-dialog';
+@use './styles/master-list';
+@use './styles/page-form';
+@use './styles/list-card';
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.icon-dark {
+  display: none;
+}
+
+html[data-theme='dark'] .icon-light {
+  display: none;
+}
+
+html[data-theme='dark'] .icon-dark {
+  display: block;
+}
+
+
+
+/* Sidebar logo theme */
+
+.logo-light {
+  display: block;
+}
+
+.logo-dark {
+  display: none;
+}
+
+html[data-theme='dark'] .logo-light {
+  display: none !important;
+}
+
+html[data-theme='dark'] .logo-dark {
+  display: block !important;
+}
+
+::-webkit-scrollbar {
+  width: 0.5px;
+}

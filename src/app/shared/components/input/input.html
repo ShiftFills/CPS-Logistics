@@ -1,0 +1,59 @@
+<div class="input-container" [class.position-top]="labelPosition() === 'top'"
+  [class.position-left]="labelPosition() === 'left'" [class.position-right]="labelPosition() === 'right'">
+
+  @if (labelPosition() === 'top') {
+
+  @if (label()) {
+  <app-label [text]="label()" [required]="required()" position="top">
+  </app-label>
+  }
+
+  }
+
+  @if (labelPosition() === 'left') {
+
+  @if (label()) {
+  <app-label [text]="label()" [required]="required()" position="left">
+  </app-label>
+  }
+
+  }
+
+  <!-- Input wrapper -->
+  <div class="input-wrapper">
+
+    <!-- Dynamic left icon -->
+    @if (icon()) {
+    <i class="input-icon" [class]="'bi ' + icon()">
+    </i>
+    }
+
+    <!-- Input -->
+    <input [type]="passwordToggle() && showPassword ? 'text' : type()" [value]="value()" [placeholder]="placeholder()"
+      [disabled]="disabled()" [required]="required()" [attr.aria-invalid]="error() ? true : null"
+      (input)="onInput($event)" />
+
+    <!-- Password show/hide icon -->
+    @if (passwordToggle()) {
+    <button type="button" class="password-toggle" (click)="togglePassword()" [disabled]="disabled()">
+
+      <i class="bi" [class.bi-eye]="!showPassword" [class.bi-eye-slash]="showPassword">
+      </i>
+
+    </button>
+    }
+
+  </div>
+  @if (error()) {
+  <span class="field-error" role="alert">{{ error() }}</span>
+  }
+  @if (labelPosition() === 'right') {
+
+  @if (label()) {
+  <app-label [text]="label()" [required]="required()" position="right">
+  </app-label>
+  }
+
+  }
+
+</div>

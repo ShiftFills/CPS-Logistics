@@ -1,0 +1,371 @@
+<div class="create-lead-page">
+  <app-page-heading
+    title="Create Lead"
+    subtitle="Capture customer details and transportation requirements to generate a new lead" />
+
+  <div class="lead-sections">
+    <app-accordion-section title="1. Primary Lead Details" [expanded]="true">
+      <div class="page-form">
+        <div class="page-form__body">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-date-picker
+                label="Date of Contact"
+                [required]="true"
+                [value]="form().dateOfContact"
+                (valueChange)="patch(form, 'dateOfContact', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Customer / Company Name"
+                placeholder="Enter customer / company name"
+                [required]="true"
+                [value]="form().customerName"
+                (valueChange)="patch(form, 'customerName', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Contact Person Name"
+                placeholder="Enter contact person name"
+                [required]="true"
+                [value]="form().contactPersonName"
+                (valueChange)="patch(form, 'contactPersonName', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-select
+                label="Designation"
+                placeholder="Select designation"
+                [required]="true"
+                [options]="designationOptions"
+                [value]="form().designation"
+                (valueChange)="patch(form, 'designation', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Contact Number"
+                placeholder="Enter contact number"
+                [required]="true"
+                [value]="form().contactNumber"
+                (valueChange)="patch(form, 'contactNumber', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Email ID"
+                type="email"
+                placeholder="Enter email ID"
+                [value]="form().emailId"
+                (valueChange)="patch(form, 'emailId', $event)" />
+            </div>
+
+            <div class="col-12">
+              <app-textarea
+                label="Additional Details"
+                placeholder="Add any other useful information"
+                [value]="form().additionalDetails"
+                (valueChange)="patch(form, 'additionalDetails', $event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="page-form__footer">
+          <app-button label="Reset" variant="secondary" />
+
+          <div class="page-form__actions">
+            <app-button label="Save Draft" variant="secondary" />
+            <app-button label="Create Lead" variant="orange" />
+          </div>
+        </div>
+      </div>
+    </app-accordion-section>
+
+       <app-accordion-section title="2. Customer Business / Transportation Requirements">
+      <div class="page-form">
+        <div class="page-form__body">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+              <app-select
+                label="Route (Origin → Destination)"
+                placeholder="Select route"
+                [options]="requirementOptions.routes"
+                [value]="requirements().route"
+                (valueChange)="patch(requirements, 'route', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <app-select
+                label="Frequency"
+                placeholder="Select frequency"
+                [options]="requirementOptions.frequencies"
+                [value]="requirements().frequency"
+                (valueChange)="patch(requirements, 'frequency', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <app-input
+                label="Approximate Volume / No. of Loads"
+                placeholder="Enter Volume / no. of loads"
+                [value]="requirements().approximateVolume"
+                (valueChange)="patch(requirements, 'approximateVolume', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3 d-flex align-items-end">
+              <button type="button" class="add-route-btn">
+                <i class="bi bi-plus-square" aria-hidden="true"></i>
+                <span>Add Route / Requirements</span>
+              </button>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-select
+                label="Vehicle Requirement"
+                placeholder="Select vehicle"
+                [options]="requirementOptions.vehicles"
+                [value]="requirements().vehicleRequirement"
+                (valueChange)="patch(requirements, 'vehicleRequirement', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-select
+                label="Local Transportation Requirement"
+                placeholder="Select local transportation"
+                [options]="requirementOptions.localTransport"
+                [value]="requirements().localTransportation"
+                (valueChange)="patch(requirements, 'localTransportation', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-select
+                label="Dedicated Vehicle"
+                placeholder="Select dedicated vehicle"
+                [options]="requirementOptions.dedicatedVehicles"
+                [value]="requirements().dedicatedVehicle"
+                (valueChange)="patch(requirements, 'dedicatedVehicle', $event)" />
+            </div>
+
+            <div class="col-12">
+              <app-textarea
+                label="Other Transportation Requirements"
+                placeholder="Add any other transportation requirements"
+                [value]="requirements().otherRequirements"
+                (valueChange)="patch(requirements, 'otherRequirements', $event)" />
+            </div>
+          </div>
+
+          <p class="form-note">
+            <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+            You can add multiple routes and requirements for this customer.
+          </p>
+        </div>
+        <ng-container
+          [ngTemplateOutlet]="sectionFooter"
+          [ngTemplateOutletContext]="{ $implicit: 'Save' }" />
+      </div>
+    </app-accordion-section>
+
+    <app-accordion-section title="3. Existing Transporter Details">
+      <div class="page-form">
+        <div class="page-form__body">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Existing Transporter Name"
+                placeholder="Enter existing transporter name"
+                [value]="transporter().transporterName"
+                (valueChange)="patch(transporter, 'transporterName', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Existing Rate"
+                placeholder="Enter rate"
+                [value]="transporter().existingRate"
+                (valueChange)="patch(transporter, 'existingRate', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-select
+                label="Vehicle Type"
+                placeholder="Select vehicle type"
+                [options]="requirementOptions.vehicles"
+                [value]="transporter().vehicleType"
+                (valueChange)="patch(transporter, 'vehicleType', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Existing Service / Route"
+                placeholder="Enter service / route"
+                [value]="transporter().serviceRoute"
+                (valueChange)="patch(transporter, 'serviceRoute', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-textarea
+                label="Customer’s Comments / Feedback"
+                placeholder="Add your comments / feedback"
+                [value]="transporter().customerComments"
+                (valueChange)="patch(transporter, 'customerComments', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="field-group">
+                <app-label text="Willing to Share Existing Rate?" />
+                <div class="radio-group" role="radiogroup" aria-label="Willing to share existing rate">
+                  <app-radio
+                    name="willingToShareRate"
+                    label="Yes"
+                    value="Yes"
+                    [selected]="transporter().willingToShareRate"
+                    (selectedChange)="patch(transporter, 'willingToShareRate', $event)" />
+                  <app-radio
+                    name="willingToShareRate"
+                    label="No"
+                    value="No"
+                    [selected]="transporter().willingToShareRate"
+                    (selectedChange)="patch(transporter, 'willingToShareRate', $event)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-container
+          [ngTemplateOutlet]="sectionFooter"
+          [ngTemplateOutletContext]="{ $implicit: 'Update' }" />
+      </div>
+    </app-accordion-section>
+
+    <app-accordion-section title="4. Proposed / Expected Business">
+      <div class="page-form">
+        <div class="page-form__body">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Expected Rate / Target Rate"
+                placeholder="Enter expected rate / target rate"
+                [value]="business().expectedRate"
+                (valueChange)="patch(business, 'expectedRate', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Monthly Business Value"
+                placeholder="Enter monthly business value"
+                [value]="business().monthlyBusinessValue"
+                (valueChange)="patch(business, 'monthlyBusinessValue', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Potential Routes"
+                placeholder="Enter routes"
+                [value]="business().potentialRoutes"
+                (valueChange)="patch(business, 'potentialRoutes', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-date-picker
+                label="Expected Start Date"
+                [value]="business().expectedStartDate"
+                (valueChange)="patch(business, 'expectedStartDate', $event)" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="field-group">
+                <app-label text="Business Requirement" />
+                <div class="radio-group" role="radiogroup" aria-label="Business requirement">
+                  <app-radio
+                    name="businessRequirement"
+                    label="Immediate Requirement"
+                    value="Immediate"
+                    [selected]="business().businessRequirement"
+                    (selectedChange)="patch(business, 'businessRequirement', $event)" />
+                  <app-radio
+                    name="businessRequirement"
+                    label="Future Requirement"
+                    value="Future"
+                    [selected]="business().businessRequirement"
+                    (selectedChange)="patch(business, 'businessRequirement', $event)" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <app-input
+                label="Possibility of Getting Business"
+                placeholder="Add possibility of getting business"
+                [value]="business().possibilityOfBusiness"
+                (valueChange)="patch(business, 'possibilityOfBusiness', $event)" />
+            </div>
+          </div>
+        </div>
+
+        <ng-container
+          [ngTemplateOutlet]="sectionFooter"
+          [ngTemplateOutletContext]="{ $implicit: 'Update' }" />
+      </div>
+    </app-accordion-section>
+
+    <app-accordion-section title="5. Additional Information / Remarks">
+      <div class="page-form">
+        <div class="page-form__body">
+          <app-textarea
+            placeholder="Add any other useful information, problems, service expectations, payment terms, decision process, competitor info, special requirements..."
+            [value]="remarks()"
+            (valueChange)="remarks.set($event)" />
+        </div>
+
+        <ng-container
+          [ngTemplateOutlet]="sectionFooter"
+          [ngTemplateOutletContext]="{ $implicit: 'Update' }" />
+      </div>
+    </app-accordion-section>
+
+    <app-accordion-section title="6. Lead Source">
+      <div class="page-form">
+        <div class="page-form__body">
+          <app-select
+            label="Lead Source"
+            placeholder="Select lead source"
+            [options]="leadSourceOptions"
+            [value]="leadSource()"
+            (valueChange)="leadSource.set($event)" />
+
+          <div class="source-chips" role="group" aria-label="Quick pick lead source">
+            @for (option of leadSourceOptions; track option.value) {
+              <button
+                type="button"
+                class="source-chip"
+                [class.is-active]="leadSource() === option.value"
+                [attr.aria-pressed]="leadSource() === option.value"
+                (click)="leadSource.set('' + option.value)">
+                {{ option.label }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <ng-container
+          [ngTemplateOutlet]="sectionFooter"
+          [ngTemplateOutletContext]="{ $implicit: 'Update' }" />
+      </div>
+    </app-accordion-section>
+  </div>
+</div>
+
+<!-- Cancel + confirm footer used by sections 2-6. Behaviour is added in a later step. -->
+<ng-template #sectionFooter let-confirmLabel>
+  <div class="page-form">
+    <div class="page-form__footer">
+      <div class="page-form__actions ms-auto">
+        <app-button label="Cancel" variant="secondary" />
+        <app-button [label]="confirmLabel" variant="orange" />
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,61 @@
+<!-- Heading + primary action -->
+<div class="origin-branch-header d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2">
+  <app-page-heading title="Origin Branch"
+    subtitle="Manage branch locations, contact details and operational information">
+  </app-page-heading>
+
+  <div class="header-action">
+    <app-button label="+ New Branch" variant="orange" size="sm" (clicked)="addBranch()" />
+  </div>
+</div>
+
+<div class="px-3 px-md-4 pb-4">
+
+  <!-- KPI cards -->
+  <div class="row g-2 mb-3">
+    @for (stat of stats(); track stat.key) {
+   
+    <div class="col-12 col-sm-6 col-xl-3">
+      <app-card class="stat-card" padding="0">
+        <div class="stat d-flex align-items-center gap-3">
+
+          <span class="stat-icon" [style.background]="stat.background">
+            <img [src]="stat.icon" alt="" aria-hidden="true" />
+          </span>
+
+          <div class="stat-body">
+            <span class="stat-value">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+            <div class="stat-trend">
+              <img [src]="stat.trendDirection === 'up' ? 'assets/icons/up-arrow.svg' : 'assets/icons/down-arrow.svg'"
+                alt="" aria-hidden="true" />
+              <span>{{ stat.trend }}</span>
+            </div>
+          </div>
+
+        </div>
+      </app-card>
+    </div>
+
+    }
+  </div>
+
+  <!-- Branch table and pagination share one reusable card surface. -->
+  <app-card class="list-table-card" padding="0">
+    <app-table [columns]="columns()" [data]="paginatedBranches()" [actions]="actions" [loading]="loading()"
+      emptyMessage="No branches found." [externalSort]="true" (sortChange)="onSort($event)"
+      (columnsChanged)="columns.set($event)" (actionTriggered)="onAction($event)">
+    </app-table>
+
+    <app-pagination [totalItems]="branches().length" [pageSize]="pageSize" [currentPage]="currentPage()"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+  </app-card>
+
+</div>
+
+<app-modal class="form-dialog" [open]="branchFormOpen()" [appendToBody]="true" title="Create Origin Branch"
+  width="min(940px, calc(100vw - 16px))" (closed)="closeBranchForm()">
+  <app-origin-branch-form [embedded]="true" (saved)="onBranchSaved()" (cancelled)="closeBranchForm()">
+  </app-origin-branch-form>
+</app-modal>

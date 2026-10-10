@@ -1,0 +1,21 @@
+<div class="layout-container">
+  <!-- Sidebar -->
+  <app-sidebar [isOpen]="isSidebarOpen" (closeSidebar)="closeSidebar()"></app-sidebar>
+
+  <!-- Mobile Overlay Backboard -->
+  <div class="sidebar-overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
+
+  <!-- Main View Area -->
+  <div class="main-wrapper">
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+    <main class="content-body">
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
+
+<app-toast></app-toast>
+
+<app-dialog></app-dialog>

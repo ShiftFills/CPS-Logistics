@@ -1,0 +1,56 @@
+<div class="leads-page" (click)="closeFilters()">
+
+  <app-page-heading title="My Leads" subtitle="Track and manage your assigned leads" />
+
+  <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 my-3">
+    @for (kpi of kpiMetrics; track kpi.label) {
+      <div class="col">
+        <app-kpi-card
+          [label]="kpi.label"
+          [value]="kpi.value"
+          [iconSrc]="kpi.icon"
+          [tone]="kpi.tone"
+          [trend]="kpi.trend"
+          [trendDirection]="kpi.dir" />
+      </div>
+
+    }
+  </div>
+
+  <section class="leads-card">
+
+    <div class="leads-card__header">
+      <div>
+        <h2>My Leads</h2>
+        <p class="subtitle">14 follow-ups due today</p>
+      </div>
+
+      <button type="button" class="filter-btn" (click)="leadTable.closePopover(); toggleFilters($event)">
+        <i class="icon icon-filter"></i>
+        Filters
+      </button>
+
+      @if (showFilters()) {
+        <div class="filter-wrapper" (click)="$event.stopPropagation()">
+          <app-filter [filters]="filterConfig" (applied)="onFiltersApplied($event)" />
+        </div>
+      }
+    </div>
+
+    <app-table #leadTable variant="embedded" [columns]="columns" [data]="filteredLeadData()"
+      [actions]="tableActions" (actionTriggered)="handleAction($event)"
+      (columnsChanged)="onColumnsChanged($event)" />
+
+    <div class="leads-card__footer">
+      <app-pagination [totalItems]="100" [pageSize]="10" [currentPage]="currentPage()"
+        (pageChange)="onPageChange($event)" />
+    </div>
+
+  </section>
+</div>
+
+<app-update-status
+  [lead]="selectedLead()"
+  [history]="leadStatusHistory()[selectedLead()?.leadId ?? ''] ?? []"
+  (closed)="closeUpdateStatus()"
+  (saved)="saveLeadStatus($event)" />

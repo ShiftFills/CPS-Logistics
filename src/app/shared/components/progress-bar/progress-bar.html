@@ -1,0 +1,40 @@
+<div class="progress-container">
+
+  @if (label()) {
+    <div class="progress-header">
+
+      <span>
+        {{ label() }}
+      </span>
+
+      @if (showPercentage()) {
+        <span>
+          {{ percentage() }}%
+        </span>
+      }
+
+    </div>
+  }
+
+  <div
+    class="progress-track"
+    role="progressbar"
+    [attr.aria-valuenow]="percentage()"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+
+    <div
+      class="progress-value"
+      [style.width.%]="percentage()">
+    </div>
+
+  </div>
+
+  @if (!label() && showPercentage()) {
+    <div class="percentage">
+      {{ percentage() }}%
+    </div>
+  }
+
+</div>

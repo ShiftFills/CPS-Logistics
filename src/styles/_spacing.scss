@@ -1,0 +1,67 @@
+:root {
+     /* ==========================================
+     PAGE HEADING
+     ========================================== */
+
+  --page-heading-padding-y: 20px;
+  --page-heading-padding-x: 20px;
+  --page-heading-gap: 4px;
+
+  /* ==========================================
+     TABLE & CARD
+     ========================================== */
+
+  --card-radius: 16px;
+  --card-padding: 24px;
+
+  --table-cell-padding-y: 16px;
+  --table-cell-padding-x: 16px;
+
+
+  /* ==========================================
+     BUTTON
+     ========================================== */
+
+  --button-padding-xs: 4px 10px;
+  --button-padding-sm: 8px 14px;
+  --button-padding-lg: 7px 22px;
+
+  --button-radius: 6px;
+
+
+  /* ==========================================
+     INPUT
+     ========================================== */
+
+  --input-padding: 10px 12px;
+  --input-radius: 6px;
+
+
+  /* ==========================================
+     LABEL
+     ========================================== */
+
+  --label-gap: 6px;
+  --label-left-margin: 10px;
+  --label-right-margin: 10px;
+  --label-required-margin: 3px;
+
+
+  /* ==========================================
+     LOGIN
+     ========================================== */
+
+  --login-hero-padding-x: 3.5rem;
+
+  --login-logo-max-width: 90px;
+
+  --login-title-margin-top: 20px;
+  --login-subtitle-margin-top: 8px;
+
+  --login-truck-width-offset: 6rem;
+  --login-truck-margin-left: -3rem;
+
+  --login-card-max-width: 440px;
+
+  --login-password-toggle-padding: 0.75rem 1rem;
+}

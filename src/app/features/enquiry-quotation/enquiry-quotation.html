@@ -1,0 +1,43 @@
+<div class="enquiry-page">
+
+  <app-page-heading
+    title="Enquiry &amp; Quotation"
+    subtitle="Manage customer enquiries and create quotations">
+    <app-button label="+ New Enquiry" variant="orange" size="sm" (clicked)="addEnquiry()" />
+  </app-page-heading>
+
+  <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-4 my-3">
+    @for (kpi of kpiMetrics; track kpi.label) {
+      <div class="col">
+        <app-kpi-card
+          [label]="kpi.label"
+          [value]="kpi.value"
+          [iconSrc]="kpi.icon"
+          [tone]="kpi.tone"
+          [trend]="kpi.trend"
+          [trendDirection]="kpi.dir" />
+      </div>
+    }
+  </div>
+     <section class="list-card">
+    <app-table
+      variant="embedded"
+      [columns]="columns()"
+      [data]="pagedEnquiries()"
+      [actions]="tableActions"
+      [externalSort]="true"
+      emptyMessage="No enquiries found"
+      (sortChange)="onSort($event)"
+      (columnsChanged)="columns.set($event)"
+      (actionTriggered)="onAction($event)" />
+
+    <div class="list-card__footer">
+      <app-pagination
+        [totalItems]="enquiries().length"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage()"
+        (pageChange)="onPageChange($event)" />
+    </div>
+  </section>
+
+</div>

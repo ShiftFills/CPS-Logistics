@@ -1,0 +1,12 @@
+<label
+  class="label"
+  [class.label-top]="position() === 'top'"
+  [class.label-left]="position() === 'left'"
+  [class.label-right]="position() === 'right'"
+>
+  {{ text() }}
+
+  @if (required()) {
+    <span class="required">*</span>
+  }
+</label>

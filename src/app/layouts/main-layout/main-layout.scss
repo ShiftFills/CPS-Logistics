@@ -1,0 +1,65 @@
+.layout-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-background);
+
+}
+
+
+// app-sidebar {
+//   flex-shrink: 0;
+//   zoom: 0.8;
+//   height: 125vh;      // 100 / 0.8 = 125 → after zoom, renders back to 100vh
+//   overflow-y: auto;
+// }
+
+::ng-deep app-sidebar {
+  >* {
+    width: 260px;
+    height: 100vh;
+  }
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+::ng-deep app-sidebar>.sidebar-root-class {
+  height: 125vh;
+}
+
+.content-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0px 3px;
+  background-color: var(--color-background);
+  padding: 10px 15px;
+}
+
+.content-wrapper {
+  width: 100%;
+  zoom: 0.7; // reflows layout, no ghost overflow like transform does
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+}

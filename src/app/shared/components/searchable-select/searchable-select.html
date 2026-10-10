@@ -1,0 +1,87 @@
+
+<div
+  class="searchable-select"
+  [class.disabled]="disabled()"
+>
+
+  <!-- Select Button -->
+  <button
+    type="button"
+    class="select-button"
+    [class.open]="isOpen()"
+    [disabled]="disabled()"
+    (click)="toggleDropdown()"
+  >
+
+    <span
+      class="selected-value"
+      [class.placeholder]="!value()"
+    >
+      {{ value() || placeholder() }}
+    </span>
+
+   <i
+  class="icon icon-chevron-down select-arrow"
+  [class.rotate]="isOpen()"
+></i>
+
+  </button>
+
+
+  <!-- Dropdown -->
+  @if (isOpen()) {
+
+    <div class="dropdown-panel">
+
+      <!-- Search -->
+      <div class="search-container">
+
+        <input
+          type="text"
+          class="search-input"
+          [placeholder]="searchPlaceholder()"
+          [value]="searchQuery()"
+          (input)="onSearch($event)"
+          (click)="$event.stopPropagation()"
+          autocomplete="off"
+        />
+
+      </div>
+
+
+      <!-- Options -->
+      <div class="options-container">
+
+        @if (filteredOptions().length > 0) {
+
+          @for (
+            option of filteredOptions();
+            track option
+          ) {
+
+            <button
+              type="button"
+              class="option"
+              [class.selected]="option === value()"
+              (click)="selectOption(option)"
+            >
+              {{ option }}
+            </button>
+
+          }
+
+        } @else {
+
+          <div class="no-options">
+            No options found
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

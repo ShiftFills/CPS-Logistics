@@ -1,0 +1,45 @@
+
+.time-picker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.required {
+  color: red;
+}
+
+input[type='time'] {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 10px 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  background-color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition: border-color 0.2s ease;
+}
+
+input[type='time']:focus {
+  border-color: #1976d2;
+}
+
+input[type='time']:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}

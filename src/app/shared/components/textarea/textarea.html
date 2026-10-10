@@ -1,0 +1,23 @@
+<div class="textarea-container">
+
+  @if (label()) {
+    <label>
+      {{ label() }}
+
+      @if (required()) {
+        <span class="required">*</span>
+      }
+    </label>
+  }
+
+  <textarea
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [rows]="rows()"
+    [disabled]="disabled()"
+    [required]="required()"
+    [readOnly]="readonly()"
+    (input)="onInput($event)"
+  ></textarea>
+
+</div>

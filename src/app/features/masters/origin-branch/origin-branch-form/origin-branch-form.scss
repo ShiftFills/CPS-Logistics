@@ -1,0 +1,138 @@
+:host {
+  display: block;
+  min-width: 0;
+  font-family: var(--font-family);
+}
+
+.branch-form-page {
+  width: 100%;
+}
+
+.form-page-header {
+  padding: 22px 26px 16px;
+  border-bottom: 1px solid #edf0f4;
+
+  h1 {
+    margin: 0;
+    color: #172033;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+}
+
+.branch-form {
+  padding: 18px 26px 16px;
+}
+
+:host ::ng-deep app-input.branch-field,
+:host ::ng-deep app-select.branch-field {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep app-input.branch-field .label,
+:host ::ng-deep app-select.branch-field .label {
+  margin: 0;
+  color: #34435c;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+:host ::ng-deep app-input.branch-field .position-top,
+:host ::ng-deep app-select.branch-field .select-container {
+  gap: 7px;
+}
+
+:host ::ng-deep .branch-form app-input.branch-field .input-container .input-wrapper input,
+:host ::ng-deep app-select.branch-field .select-trigger {
+  height: 36px;
+  box-sizing: border-box;
+  border: 1px solid #edf0f4;
+  border-radius: 11px;
+  background-color: #fafbfc;
+  color: #34435c;
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  outline: none;
+}
+
+:host ::ng-deep .branch-form app-input.branch-field .input-container .input-wrapper input {
+  padding: 8px 13px;
+}
+
+:host ::ng-deep .branch-form app-input.branch-field .input-container .input-wrapper input::placeholder,
+:host ::ng-deep app-select.branch-field .select-trigger {
+  color: #8fa2bd;
+}
+
+:host ::ng-deep .branch-form app-select.branch-field .select-trigger.has-value {
+  color: #34435c;
+}
+
+:host ::ng-deep app-select.branch-field .select-trigger {
+  padding: 8px 34px 8px 13px;
+  border-radius: 11px;
+}
+
+:host ::ng-deep .branch-form app-input.branch-field .input-container .input-wrapper input:focus,
+:host ::ng-deep app-select.branch-field .select-trigger:focus {
+  border-color: #bdc9d9;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(143, 162, 189, 0.12);
+}
+
+.form-actions {
+  margin-top: 30px;
+}
+
+:host ::ng-deep .form-actions app-button {
+  display: block;
+  width: 72px;
+}
+
+:host ::ng-deep .form-actions app-button:nth-child(2) {
+  width: 60px;
+}
+
+:host ::ng-deep .form-actions app-button:last-child {
+  width: 68px;
+}
+
+:host ::ng-deep .form-actions app-button .button {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+:host ::ng-deep .form-actions app-button.remove-action .button-outline {
+  border-color: #fb7185;
+  background: #fff;
+  color: #f43f5e;
+  box-shadow: none;
+}
+
+:host ::ng-deep .form-actions app-button:nth-child(2) .button-secondary {
+  border-color: #f1f5f9;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+@media (max-width: 575.98px) {
+  .branch-form {
+    padding: 16px 18px 18px;
+  }
+
+  .form-page-header {
+    padding: 18px 18px 14px;
+  }
+
+  .form-actions {
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,33 @@
+<div
+  class="card"
+  [class.no-shadow]="!shadow()"
+  [style.padding]="padding()"
+>
+
+  @if (title() || subtitle()) {
+
+    <div class="card-header">
+
+      @if (title()) {
+        <h2>
+          {{ title() }}
+        </h2>
+      }
+
+      @if (subtitle()) {
+        <p>
+          {{ subtitle() }}
+        </p>
+      }
+
+    </div>
+
+  }
+
+  <div class="card-body">
+
+    <ng-content></ng-content>
+
+  </div>
+
+</div>

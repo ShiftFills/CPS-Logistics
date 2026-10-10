@@ -1,0 +1,168 @@
+
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.origin-branch-header {
+  padding: 10px 16px 14px;
+}
+
+.header-action {
+  flex-shrink: 0;
+  width: 154px;
+  max-width: 100%;
+}
+
+.stat-card {
+  display: block;
+  height: 100%;
+}
+
+.list-table-card {
+  display: block;
+}
+
+// Keep the card treatment local to these four summary cards.
+:host ::ng-deep app-card.stat-card > .card {
+  height: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  box-shadow: none;
+  background-color: var(--color-card-bg);
+}
+
+:host ::ng-deep app-card.stat-card .card-body {
+  display: flex;
+  align-items: center;
+  min-height: 112px;
+  padding: 12px 18px;
+}
+
+:host ::ng-deep app-card.list-table-card > .card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: none;
+  background-color: var(--color-card-bg);
+}
+
+:host ::ng-deep app-card.list-table-card > .card > .card-body {
+  padding: 0;
+}
+
+// Let the shared table sit flush inside the card rather than drawing a second frame.
+:host ::ng-deep app-card.list-table-card app-table .table-wrapper {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:host ::ng-deep app-card.list-table-card app-pagination .paginator-container {
+  box-sizing: border-box;
+  border-top: 1px solid var(--color-border);
+  padding: 12px 24px 16px;
+}
+
+:host ::ng-deep app-card.list-table-card app-pagination .paginator-container {
+  .nav-btn,
+  .page-num-btn,
+  .ellipsis {
+    color: var(--color-card-title);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.65;
+  }
+
+  .page-num-btn.active {
+    color: var(--color-white);
+  }
+}
+
+:host ::ng-deep app-table .custom-table tbody td.second-column .cell-text,
+:host ::ng-deep app-table .custom-table tbody td.second-column .cell-link {
+  font-weight: 400;
+}
+
+.stat {
+  width: 100%;
+  gap: 16px !important;
+}
+
+// These values inherit into the shared table and only affect this screen.
+app-table {
+  --table-cell-padding-y: 16px;
+  --table-cell-padding-x: 16px;
+  --table-header-cell-padding-y: 18px;
+  --table-header-cell-padding-x: 16px;
+  --table-header-font-size: 11px;
+  --table-body-font-size: 13px;
+  --color-table-header: #8fa2bd;
+  --color-text: var(--color-card-title);
+}
+
+.stat-icon {
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  img {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  color: var(--color-heading);
+}
+
+.stat-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-subtle);
+}
+
+.stat-trend {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 8px;
+  font-size: 0.6875rem;
+  color: var(--pill-green-text);
+
+  span {
+    color: var(--pill-green-text);
+  }
+
+  img {
+    width: 12px;
+    height: 23px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .origin-branch-header {
+    padding: 10px 16px 14px;
+  }
+
+  .header-action {
+    width: 100%;
+  }
+
+  :host ::ng-deep app-card.stat-card .card-body {
+    min-height: 112px;
+  }
+
+}

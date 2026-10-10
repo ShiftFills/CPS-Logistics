@@ -1,0 +1,85 @@
+<div class="toast-container">
+
+  @for (toast of toastService.toasts(); track toast.id) {
+
+    <div
+      class="toast"
+      [class.success]="toast.type === 'success'"
+      [class.error]="toast.type === 'error'"
+      [class.warning]="toast.type === 'warning'"
+      [class.info]="toast.type === 'info'"
+    >
+
+      <!-- Icon -->
+      <div class="toast-icon">
+
+        @if (toast.type === 'success') {
+          <i class="icon-check"></i>
+        }
+
+        @if (toast.type === 'error') {
+          <i class="icon-error">!</i>
+        }
+
+        @if (toast.type === 'warning') {
+          <i class="icon-warning">!</i>
+        }
+
+        @if (toast.type === 'info') {
+          <i class="icon-info">i</i>
+        }
+
+      </div>
+
+      <!-- Content -->
+      <div class="toast-content">
+
+        <div class="toast-title">
+          @switch (toast.type) {
+
+            @case ('success') {
+              Success
+            }
+
+            @case ('error') {
+              Error
+            }
+
+            @case ('warning') {
+              Warning
+            }
+
+            @case ('info') {
+              Information
+            }
+
+          }
+        </div>
+
+        <div class="toast-message">
+          {{ toast.message }}
+        </div>
+
+      </div>
+
+      <!-- Close -->
+      <button
+        type="button"
+        class="toast-close"
+        (click)="toastService.remove(toast.id)"
+        aria-label="Close notification"
+      >
+        ×
+      </button>
+
+      <!-- Progress -->
+      <div
+        class="toast-progress"
+        [style.animation-duration.ms]="toast.duration"
+      ></div>
+
+    </div>
+
+  }
+
+</div>

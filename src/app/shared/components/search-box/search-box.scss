@@ -1,0 +1,149 @@
+.search-box {
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 16px;
+
+  border-radius: 9999px;
+  border: 1px solid transparent;
+
+  background-color: var(--color-control-bg);
+
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+
+  &:hover:not(:has(input:disabled)) {
+    background-color: var(--color-control-hover);
+  }
+
+  &:focus-within {
+    border-color: var(--color-primary);
+    background-color: var(--color-card-bg);
+
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
+  }
+}
+
+/* =========================
+   SEARCH ICON
+   ========================= */
+
+.search-icon {
+  position: relative;
+
+  display: inline-block;
+
+  width: 9px;
+  height: 9px;
+
+  margin-right: 10px;
+
+  border: 1.8px solid var(--color-control-text);
+  border-radius: 50%;
+
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+
+    bottom: -3.5px;
+    right: -3.5px;
+
+    width: 5px;
+    height: 1.8px;
+
+    background-color: var(--color-control-text);
+
+    transform: rotate(45deg);
+    transform-origin: center;
+
+    border-radius: 1px;
+  }
+}
+
+/* =========================
+   INPUT
+   ========================= */
+
+input {
+  flex: 1;
+  min-width: 0;
+
+  height: 100%;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-family: var(--font-family, sans-serif);
+  font-size: 12px;
+
+  color: var(--color-text);
+
+  &::placeholder {
+    color: var(--color-control-text);
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* =========================
+   DISABLED
+   ========================= */
+
+.search-box:has(input:disabled) {
+  background-color: var(--color-input-disabled-background);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================
+   CLEAR BUTTON
+   ========================= */
+
+.clear-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  margin-left: 6px;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: transparent;
+
+  color: var(--color-text-muted);
+
+  font-size: 16px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  transition: background-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-control-hover);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

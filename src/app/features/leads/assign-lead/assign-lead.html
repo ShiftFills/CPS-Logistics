@@ -1,0 +1,74 @@
+<div class="assign-lead-page">
+  <app-page-heading
+    title="Assign Lead"
+    subtitle="Distribute unassigned leads to your sales team" />
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-7">
+      <app-card class="assign-card" padding="24px">
+        <h2 class="card-title">Unassigned Leads</h2>
+        <p class="card-subtitle">Select one or more to assign together</p>
+
+        <div class="table-responsive leads-table-wrap">
+          <app-table
+            [columns]="columns"
+            [data]="tableLeads()"
+            [loading]="loading()"
+            [headerCheckboxChecked]="allOnPageSelected()"
+            (headerCheckboxChange)="toggleAllOnPage($event)"
+            (checkboxChange)="onTableCheckboxChange($event)"
+            rowSelectedKey="selected"
+            variant="embedded"
+            [resizable]="false"
+            [reorderable]="false"
+            emptyMessage="No unassigned leads." />
+        </div>
+
+        <app-pagination
+          [totalItems]="total()"
+          [pageSize]="pageSize"
+          [currentPage]="page()"
+          (pageChange)="onPageChange($event)" />
+      </app-card>
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <app-card class="assign-card" padding="24px">
+        <h2 class="card-title">Assign Selected</h2>
+
+        <div class="page-form assign-form">
+          <div class="chips" aria-live="polite">
+            @for (id of selectedList(); track id) {
+              <span class="chip">{{ id }}</span>
+            } @empty {
+              <span class="chips__empty">No leads selected</span>
+            }
+          </div>
+          @if (selectionError()) {
+            <span class="field-error" role="alert">{{ selectionError() }}</span>
+          }
+
+          <app-select
+            label="Assign To"
+            placeholder="Select Executive"
+            [required]="true"
+            [options]="executives()"
+            [value]="executiveId()"
+            [error]="executiveError()"
+            (valueChange)="executiveId.set($event)" />
+
+          <app-textarea
+            label="Remarks"
+            placeholder="Optional note for the employee"
+            [value]="remarks()"
+            (valueChange)="remarks.set($event)" />
+
+          <div class="page-form__actions assign-actions">
+            <app-button label="Cancel" variant="secondary" (clicked)="onCancel()" />
+            <app-button label="Assign Leads" variant="orange" (clicked)="onAssign()" />
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

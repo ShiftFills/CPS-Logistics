@@ -1,0 +1,14 @@
+<button
+  type="button"
+  class="export-button"
+  [disabled]="disabled()"
+  (click)="onExport()"
+>
+  <span class="export-icon">
+    ↓
+  </span>
+
+  <span>
+    {{ label() }}
+  </span>
+</button>

@@ -1,0 +1,11 @@
+<label class="radio-container">
+  <input
+    type="radio"
+    [name]="name()"
+    [value]="value()"
+    [checked]="selected() === value()"
+    [disabled]="disabled()"
+    [required]="required()"
+    (change)="onChange($event)" />
+  <span class="radio-label">{{ label() }}</span>
+</label>

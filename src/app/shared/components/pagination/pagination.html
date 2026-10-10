@@ -1,0 +1,30 @@
+<div class="paginator-container d-flex flex-wrap align-items-center justify-content-center justify-content-sm-end">
+  <button 
+    class="pagination-btn nav-btn" 
+    [disabled]="currentPage() === 1" 
+    (click)="prevPage()">
+    <i class="icon icon-prev"></i> Previous
+  </button>
+
+  <div class="page-numbers">
+    @for (page of pages(); track $index) {
+      @if (page === '...') {
+        <span class="ellipsis">...</span>
+      } @else {
+        <button 
+          class="page-num-btn" 
+          [class.active]="page === currentPage()" 
+          (click)="selectPage(page)">
+          {{ page }}
+        </button>
+      }
+    }
+  </div>
+
+  <button 
+    class="pagination-btn nav-btn" 
+    [disabled]="currentPage() === totalPages() || totalPages() === 0" 
+    (click)="nextPage()">
+    Next <i class="icon icon-next"></i>
+  </button>
+</div>

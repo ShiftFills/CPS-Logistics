@@ -1,0 +1,61 @@
+/* Compact variant (form dialogs) */
+.upload-compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 6px;
+  border: 1px dashed #d6e0ee;
+  border-radius: 11px;
+  background-color: #fafbfc;
+  font-size: 12px;
+}
+
+.upload-compact.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.choose-btn {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #edf0f4;
+  color: #34435c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.choose-btn input[type='file'] {
+  display: none;
+}
+
+.compact-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #34435c;
+}
+
+.compact-name.empty {
+  color: #8fa2bd;
+}
+
+.view-link {
+  flex: 0 0 auto;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.upload-compact.invalid {
+  border-color: #fb7185;
+}

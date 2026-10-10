@@ -1,0 +1,43 @@
+@if (message()) {
+
+  <div
+    class="alert"
+    [class.alert-success]="type() === 'success'"
+    [class.alert-error]="type() === 'error'"
+    [class.alert-warning]="type() === 'warning'"
+    [class.alert-info]="type() === 'info'"
+    role="alert"
+  >
+
+    <span class="alert-icon">
+
+      @if (type() === 'success') {
+        ✓
+      } @else if (type() === 'error') {
+        ✕
+      } @else if (type() === 'warning') {
+        !
+      } @else {
+        i
+      }
+
+    </span>
+
+    <span class="alert-message">
+      {{ message() }}
+    </span>
+
+    @if (dismissible()) {
+      <button
+        type="button"
+        class="close-button"
+        aria-label="Close"
+        (click)="onClose()"
+      >
+        ×
+      </button>
+    }
+
+  </div>
+
+}

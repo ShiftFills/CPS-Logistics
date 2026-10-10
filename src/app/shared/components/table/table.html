@@ -1,0 +1,161 @@
+<div class="table-wrapper" [class.table-wrapper--embedded]="variant() === 'embedded'" (click)="closePopover()">
+  <div class="table-container">
+    <table class="custom-table">
+      <colgroup>
+        @for (col of columns(); track col.key) {
+          <col [style.width.px]="col.width || 150" />
+        }
+      </colgroup>
+
+      <thead>
+        <tr>
+          @for (col of columns(); track col.key; let columnIndex = $index) {
+          <th [style.text-align]="col.align || 'left'" [draggable]="reorderable()"
+            (dragstart)="onColumnDragStart(columnIndex)" (dragover)="onColumnDragOver($event)"
+            (drop)="onColumnDrop(columnIndex)" [class.sortable-header]="col.sortable"
+            [class.sticky-end]="col.type === 'actions'" [ngClass]="col.headerClass"
+            (click)="col.sortable && onSort(col.key, getNextSortDirection(col.key))">
+            <div class="header-content" [attr.data-align]="col.align || 'left'">
+
+              @if (col.type === 'checkbox' && col.checkboxHeader) {
+              <app-checkbox [checked]="headerCheckboxChecked()" (checkedChange)="headerCheckboxChange.emit($event)" />
+              } @else {
+              <span>
+                {{ col.label }}
+              </span>
+              }
+
+              @if (col.sortable) {
+              <app-sort-header [direction]="getSortDirection(col.key)" [iconStyle]="sortIconStyle()" />
+              }
+
+              @if (resizable()) {
+              <span class="resize-handle" (mousedown)="startResize($event, columnIndex)"
+                (click)="$event.stopPropagation()"></span>
+              }
+
+            </div>
+          </th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+        @if (loading()) {
+        <tr>
+          <td [attr.colspan]="columns().length" class="state-cell">
+            <div class="spinner"></div>
+            Loading data...
+          </td>
+        </tr>
+        }
+
+        @else if (data().length === 0) {
+        <tr>
+          <td [attr.colspan]="columns().length" class="state-cell">
+            {{ emptyMessage() }}
+          </td>
+        </tr>
+        }
+
+        @else {
+        @for (row of sortedData(); track $index; let rowIndex = $index) {
+        <tr class="table-row" [class.row-selected]="rowSelectedKey() ? row[rowSelectedKey()!] : false">
+
+          @for (col of columns(); track col.key) {
+
+          <td [style.text-align]="col.align || 'left'" [class.second-column]="columns().indexOf(col) === 1"
+            [class.sticky-end]="col.type === 'actions'"
+            [class.popover-open]="col.type === 'actions' && activePopoverIndex() === rowIndex"
+            [ngClass]="col.cellClass">
+
+            @switch (col.type) {
+
+            @case ('checkbox') {
+            <app-checkbox [checked]="col.checkboxKey ? row[col.checkboxKey] : false"
+              (checkedChange)="checkboxChange.emit({ row, checked: $event })" />
+            }
+
+            @case ('link') {
+            <span class="cell-link">
+              {{ row[col.key] }}
+            </span>
+            }
+
+            @case ('badge') {
+            <span class="badge" [ngClass]="getBadgeClass(col, row[col.key])">
+              {{ row[col.key] }}
+            </span>
+            }
+
+            @case ('dot') {
+            <div class="dot-cell">
+              <span class="status-dot" [style.background-color]="col.colorKey ? row[col.colorKey] : null"></span>
+              <span class="cell-text">{{ row[col.key] ?? '-' }}</span>
+            </div>
+            }
+
+            @case ('progress') {
+            <div class="rate-track">
+              <div class="rate-fill" [style.width.%]="row[col.key]"
+                [style.opacity]="col.opacityKey ? row[col.opacityKey] : null" [style.animation-delay.ms]="rowIndex * 80"
+                [attr.title]="row[col.key] + '%'"></div>
+            </div>
+            }
+
+            @case ('actions') {
+            <div class="action-menu-container">
+
+              <button class="action-trigger-btn" cdkOverlayOrigin #actionOrigin="cdkOverlayOrigin"
+                (click)="togglePopover(rowIndex, row, $event)">
+                <i class="icon icon-more-vert"></i>
+              </button>
+
+              <ng-template
+                cdkConnectedOverlay
+                [cdkConnectedOverlayOrigin]="actionOrigin"
+                [cdkConnectedOverlayOpen]="activePopoverRow() === row"
+                [cdkConnectedOverlayPositions]="popoverPositions"
+                [cdkConnectedOverlayPush]="true"
+                [cdkConnectedOverlayViewportMargin]="8"
+                [cdkConnectedOverlayFlexibleDimensions]="true"
+                (overlayOutsideClick)="closePopover()">
+                <div class="action-popover" (click)="$event.stopPropagation()">
+                  @for (action of actions(); track action.id) {
+                  <button class="popover-item" [class.danger]="action.variant === 'danger'"
+                    (click)="onActionClick(action.id, row, $event)">
+                    @if (action.icon) {
+                    <i [class]="'icon ' + action.icon"></i>
+                    }
+                    <span>{{ action.label }}</span>
+                  </button>
+                  }
+                </div>
+              </ng-template>
+            </div>
+            }
+
+            @default {
+            <span class="cell-text">
+              {{ row[col.key] ?? '-' }}
+            </span>
+            @if (col.pillKey && row[col.pillKey]) {
+            <span class="badge cell-pill" [ngClass]="col.pillClassKey ? row[col.pillClassKey] : ''">
+              {{ row[col.pillKey] }}
+            </span>
+            }
+            }
+
+            }
+
+          </td>
+          }
+
+        </tr>
+        }
+        }
+      </tbody>
+
+    </table>
+  </div>
+</div>

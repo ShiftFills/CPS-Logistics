@@ -1,0 +1,42 @@
+@if (open()) {
+
+  <div
+    class="modal-backdrop"
+    (click)="onBackdropClick()"
+  >
+
+    <div
+      class="modal"
+      [style.width]="width()"
+      (click)="$event.stopPropagation()"
+    >
+
+      <div class="modal-header">
+
+        <h2>
+          {{ title() }}
+        </h2>
+
+        @if (showCloseButton()) {
+          <button
+            type="button"
+            class="close-button"
+            (click)="onClose()"
+          >
+            &times;
+          </button>
+        }
+
+      </div>
+
+      <div class="modal-body">
+
+        <ng-content></ng-content>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}

@@ -1,0 +1,11 @@
+<header class="page-heading">
+  <div class="page-heading__text">
+    <h1 class="page-heading__title">{{ title }}</h1>
+    <p class="page-heading__subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+
+  <!-- Optional: buttons/filters per screen. Renders nothing if unused. -->
+  <div class="page-heading__actions">
+    <ng-content></ng-content>
+  </div>
+</header>

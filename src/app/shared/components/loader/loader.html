@@ -1,0 +1,22 @@
+@if (loading()) {
+
+  <div
+    class="loader-container"
+    [class.overlay]="overlay()"
+  >
+
+    <div class="loader-content">
+
+      <div class="spinner"></div>
+
+      @if (message()) {
+        <p>
+          {{ message() }}
+        </p>
+      }
+
+    </div>
+
+  </div>
+
+}

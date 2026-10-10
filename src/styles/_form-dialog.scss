@@ -1,0 +1,259 @@
+// Compact shared field styling for forms hosted by the reusable form dialog.
+.form-dialog .modal-body app-input.form-field,
+.form-dialog .modal-body app-select.form-field {
+  display: block;
+  width: 100%;
+}
+
+.form-dialog .modal-body app-input.form-field .position-top,
+.form-dialog .modal-body app-select.form-field .select-container {
+  gap: 7px;
+}
+
+.form-dialog .modal-body app-input.form-field .label,
+.form-dialog .modal-body app-select.form-field .label {
+  margin: 0;
+  color: #34435c;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+app-modal.form-dialog.update-status-modal .modal-body app-input.form-field .label,
+app-modal.form-dialog.update-status-modal .modal-body app-select.form-field .label,
+app-modal.form-dialog.update-status-modal .modal-body app-date-picker.form-field label,
+app-modal.form-dialog.update-status-modal .modal-body app-textarea label {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.form-dialog .modal-body app-input.form-field .input-container .input-wrapper input,
+.form-dialog .modal-body app-select.form-field .select-trigger {
+  height: 36px;
+  box-sizing: border-box;
+  border: 1px solid #edf0f4;
+  border-radius: 11px;
+  background-color: #fafbfc;
+  color: #34435c;
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  outline: none;
+}
+
+.form-dialog .modal-body app-input.form-field .input-container .input-wrapper input {
+  padding: 8px 13px;
+}
+
+.form-dialog .modal-body app-input.form-field .input-container .input-wrapper input::placeholder,
+.form-dialog .modal-body app-select.form-field .select-trigger {
+  color: #8fa2bd;
+}
+
+.form-dialog .modal-body app-select.form-field .select-trigger {
+  padding: 8px 34px 8px 13px;
+}
+
+.form-dialog .modal-body app-select.form-field .select-trigger.has-value {
+  color: #34435c;
+}
+
+.form-dialog .modal-body app-input.form-field .input-container .input-wrapper input:focus,
+.form-dialog .modal-body app-select.form-field .select-trigger:focus {
+  border-color: #bdc9d9;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(143, 162, 189, 0.12);
+}
+
+.form-dialog .modal-body .form-actions app-button {
+  display: block;
+  width: 72px;
+}
+
+.form-dialog .modal-body .form-actions app-button:nth-child(2) {
+  width: 60px;
+}
+
+.form-dialog .modal-body .form-actions app-button:last-child {
+  width: 68px;
+}
+
+.form-dialog .modal-body .form-actions app-button .button {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-dialog .modal-body .form-actions app-button.remove-action .button-outline {
+  border-color: #fb7185;
+  background: #fff;
+  color: #f43f5e;
+  box-shadow: none;
+}
+
+.form-dialog .modal-body .form-actions app-button:nth-child(2) .button-secondary {
+  border-color: #f1f5f9;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Compact variant (form dialogs) */
+.upload-compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 6px;
+  border: 1px dashed #d6e0ee;
+  border-radius: 11px;
+  background-color: #fafbfc;
+  font-size: 12px;
+}
+
+.upload-compact.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.choose-btn {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #edf0f4;
+  color: #34435c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.choose-btn input[type='file'] {
+  display: none;
+}
+
+.compact-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #34435c;
+}
+
+.compact-name.empty {
+  color: #8fa2bd;
+}
+
+.view-link {
+  flex: 0 0 auto;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Date picker + file upload fields inside the dialog */
+.form-dialog .modal-body app-date-picker.form-field,
+.form-dialog .modal-body app-file-upload.form-field {
+  display: block;
+  width: 100%;
+}
+
+.form-dialog .modal-body app-date-picker.form-field .date-picker-container {
+  gap: 7px;
+}
+
+.form-dialog .modal-body app-date-picker.form-field label,
+.form-dialog .modal-body app-file-upload.form-field .upload-label {
+  display: block;
+  margin: 0 0 7px;
+  color: #34435c;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.form-dialog .modal-body app-date-picker.form-field label {
+  margin: 0;
+}
+
+.form-dialog .modal-body app-date-picker.form-field .required {
+  margin-left: 3px;
+  color: var(--color-label-required, #f43f5e);
+}
+
+.form-dialog .modal-body app-date-picker.form-field input[type='date'] {
+  height: 36px;
+  box-sizing: border-box;
+  padding: 8px 13px;
+  border: 1px solid #edf0f4;
+  border-radius: 11px;
+  background-color: #fafbfc;
+  color: #34435c;
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.form-dialog .modal-body app-date-picker.form-field input[type='date']:focus {
+  border-color: #bdc9d9;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(143, 162, 189, 0.12);
+}
+
+/* Generic master form spacing (header only shows when a form is opened as a page) */
+.master-form {
+  padding: 18px 26px 16px;
+
+  .form-actions {
+    margin-top: 22px;
+  }
+}
+
+.master-form-header {
+  padding: 22px 26px 16px;
+  border-bottom: 1px solid #edf0f4;
+
+  h1 {
+    margin: 0;
+    color: #182238;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .master-form {
+    padding: 16px 18px 18px;
+
+    .form-actions {
+      margin-top: 18px;
+    }
+  }
+
+  .master-form-header {
+    padding: 18px 18px 14px;
+  }
+}
+
+
+/* Inline validation */
+.field-error {
+  display: block;
+  color: var(--color-label-required, #dc3545);
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.form-dialog .modal-body app-input.form-field .input-container .input-wrapper input[aria-invalid='true'],
+.form-dialog .modal-body app-select.form-field .select-trigger[aria-invalid='true'],
+.form-dialog .modal-body app-date-picker.form-field input[type='date'][aria-invalid='true'] {
+  border-color: #fb7185;
+}

@@ -1,0 +1,41 @@
+
+
+
+:root {
+
+  /* ==========================================
+     COMPONENT SHADOWS
+     ========================================== */
+
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-popover: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+
+  /* ==========================================
+     BUTTON
+     ========================================== */
+
+  --button-padding-xs: 4px 10px;
+  --button-padding-sm: 8px 14px;
+  --button-padding-lg: 7px 22px;
+
+  --button-radius: 6px;
+
+
+  /* ==========================================
+     INPUT
+     ========================================== */
+
+  --input-padding: 10px 12px;
+  --input-radius: 6px;
+
+
+  /* ==========================================
+     LABEL
+     ========================================== */
+
+  --label-gap: 6px;
+  --label-left-margin: 10px;
+  --label-right-margin: 10px;
+  --label-required-margin: 3px;
+}

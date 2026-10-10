@@ -1,0 +1,92 @@
+<app-modal
+  class="form-dialog update-status-modal"
+  [open]="lead() !== null"
+  [appendToBody]="true"
+  title="Update Status"
+  width="min(450px, calc(100vw - 16px))"
+  (closed)="closed.emit()">
+  @if (lead(); as selectedLead) {
+  <form class="page-form update-status-form" novalidate (submit)="submit($event)">
+    <div class="row g-2">
+      <div class="col-12 col-sm-6">
+        <app-input class="form-field" label="Customer Name" [value]="selectedLead.customer" [disabled]="true" />
+      </div>
+      <div class="col-12 col-sm-6">
+        <app-input class="form-field" label="Lead ID" [value]="selectedLead.leadId" [disabled]="true" />
+      </div>
+      <div class="col-12 col-sm-6">
+        <app-select
+          class="form-field"
+          label="Status"
+          [required]="true"
+          [options]="statusOptions"
+          [value]="status()"
+          (valueChange)="status.set($event)" />
+      </div>
+      <div class="col-12 col-sm-6">
+        <app-date-picker
+          class="form-field"
+          label="Follow-up Date"
+          [required]="true"
+          [value]="followUpDate()"
+          (valueChange)="followUpDate.set($event)" />
+      </div>
+      <div class="col-12">
+        <div class="feedback-field">
+          <app-textarea
+            label="Customer Feedback"
+            placeholder="Enter customer feedback"
+            [required]="true"
+            [rows]="3"
+            [value]="feedback()"
+            (valueChange)="feedback.set($event.slice(0, 500))" />
+          <span class="feedback-count">{{ feedback().length }}/500</span>
+        </div>
+      </div>
+    </div>
+
+    @if (formError()) {
+    <p class="update-form-error" role="alert">{{ formError() }}</p>
+    }
+
+    <section class="lead-history" aria-labelledby="lead-history-title">
+      <h3 id="lead-history-title">Lead History</h3>
+      @if (history().length) {
+      <div class="history-list">
+        @for (entry of history(); track $index) {
+        <article class="history-entry">
+          <div class="history-field history-field--contact">
+            <span class="history-label">Contact Date</span>
+            <span class="history-value">{{ entry.contactDate }}</span>
+          </div>
+          <div class="history-field history-field--follow-up">
+            <span class="history-label">Follow-up Date</span>
+            <span class="history-value">{{ entry.followUpDate }}</span>
+          </div>
+          <div class="history-field history-field--feedback">
+            <span class="history-label">Feedback</span>
+            <span class="history-value">{{ entry.feedback }}</span>
+          </div>
+          <div class="history-field history-field--updated-by">
+            <span class="history-label">Updated By</span>
+            <span class="history-value">{{ entry.updatedBy }}</span>
+          </div>
+          <div class="history-field history-field--status">
+            <span class="history-label">Status</span>
+            <app-badge [label]="entry.status" [type]="badgeType(entry.status)" />
+          </div>
+        </article>
+        }
+      </div>
+      } @else {
+      <p class="history-empty">No status updates recorded yet.</p>
+      }
+    </section>
+
+    <div class="update-status-actions d-flex flex-column-reverse flex-sm-row justify-content-end gap-2">
+      <app-button label="Cancel" variant="secondary" (clicked)="closed.emit()" />
+      <app-button label="Update Status" variant="orange" type="submit" />
+    </div>
+  </form>
+  }
+</app-modal>

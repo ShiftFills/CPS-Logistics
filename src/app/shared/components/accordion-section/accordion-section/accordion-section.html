@@ -1,0 +1,22 @@
+<section class="accordion-card" [class.is-open]="expanded()">
+  <button
+    type="button"
+    class="accordion-header"
+    [attr.aria-expanded]="expanded()"
+    [attr.aria-controls]="bodyId"
+    (click)="toggle()">
+    <span class="accordion-title">{{ title() }}</span>
+
+    <i
+      class="bi accordion-icon"
+      [class.bi-plus]="!expanded()"
+      [class.bi-dash]="expanded()"
+      aria-hidden="true"></i>
+  </button>
+
+  @if (expanded()) {
+    <div class="accordion-body" [id]="bodyId">
+      <ng-content />
+    </div>
+  }
+</section>

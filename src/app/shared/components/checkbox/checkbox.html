@@ -1,0 +1,19 @@
+<label class="checkbox-container">
+
+  <input
+    type="checkbox"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    [required]="required()"
+    (change)="onChange($event)"
+  />
+
+  <span class="checkbox-label">
+    {{ label() }}
+
+    @if (required()) {
+      <span class="required">*</span>
+    }
+  </span>
+
+</label>

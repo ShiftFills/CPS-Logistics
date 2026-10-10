@@ -1,0 +1,126 @@
+:host {
+  display: block;
+}
+
+// Make the shared page heading match the Figma size for this screen only.
+// These are CSS variables that app-page-heading already reads, so the
+// shared component and the other screens are not touched.
+app-page-heading {
+  --page-title-font-size: 24px;
+  --page-subtitle-font-size: 14px;
+
+  display: block;
+  margin-bottom: 24px;
+}
+
+.lead-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// "Add Route / Requirements": orange outline button with an icon.
+// Local to this page. app-button has no icon support or orange-outline variant,
+// so the shared component stays untouched.
+.add-route-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 50px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-accent-border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--color-accent);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  text-align: left;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  i {
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  &:hover {
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+// Orange helper line under the fields
+.form-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 32px 0 0;
+  color: var(--color-accent);
+  font-size: 11px;
+  line-height: 14px;
+}
+
+// Label + radio buttons, laid out like a form field (sections 3 and 4)
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--label-gap, 8px);
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 32px;
+  min-height: 40px; // same height as an input, so the radios line up with neighbouring fields
+}
+
+// Lead Source quick-pick chips (section 6)
+.source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.source-chip {
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--color-hover-bg);
+  color: var(--color-card-title);
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  &.is-active {
+    border-color: var(--color-accent-border);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+}

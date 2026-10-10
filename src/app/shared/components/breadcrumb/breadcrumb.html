@@ -1,0 +1,33 @@
+<nav class="breadcrumb" aria-label="Breadcrumb">
+
+  @for (item of items(); track item.label; let last = $last) {
+
+    @if (item.url && !last) {
+
+      <a
+        [href]="item.url"
+        (click)="onItemClick(item)"
+      >
+        {{ item.label }}
+      </a>
+
+    } @else {
+
+      <span
+        class="current"
+        [class.last]="last"
+      >
+        {{ item.label }}
+      </span>
+
+    }
+
+    @if (!last) {
+      <span class="separator">
+        >
+      </span>
+    }
+
+  }
+
+</nav>

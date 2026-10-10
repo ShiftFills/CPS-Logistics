@@ -1,0 +1,50 @@
+<div class="select-container">
+
+  @if (label()) {
+    <app-label 
+      [text]="label()" 
+      [required]="required()"
+      position="top">
+    </app-label>
+  }
+
+  <div class="select-wrapper">
+    <button
+      type="button"
+      class="select-trigger"
+      [class.has-value]="!!value()"
+      [class.is-open]="isOpen()"
+      [disabled]="disabled()"
+      [attr.aria-label]="label() || placeholder()"
+      [attr.aria-required]="required()"
+      aria-haspopup="listbox"
+      [attr.aria-expanded]="isOpen()"
+      [attr.aria-controls]="listboxId"
+      (click)="toggle()"
+      (keydown)="onKeydown($event)">
+      <span>{{ selectedLabel() }}</span>
+      <i class="icon icon-chevron-down" aria-hidden="true"></i>
+    </button>
+
+    @if (isOpen()) {
+      <div class="select-options" [id]="listboxId" role="listbox" [attr.aria-label]="label() || placeholder()">
+        @for (option of options(); track option.value; let index = $index) {
+          <button
+            type="button"
+            class="select-option"
+            role="option"
+            [class.is-active]="activeIndex() === index"
+            [class.is-selected]="'' + option.value === '' + value()"
+            [attr.aria-selected]="'' + option.value === '' + value()"
+            (mouseenter)="activeIndex.set(index)"
+            (click)="selectOption(option)">
+            {{ option.label }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+ @if (error()) {
+    <span class="field-error" role="alert">{{ error() }}</span>
+  }
+</div>

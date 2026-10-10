@@ -1,0 +1,17 @@
+<div class="tabs">
+
+  @for (tab of tabs(); track tab.value) {
+
+    <button
+      type="button"
+      class="tab"
+      [class.active]="tab.value === activeTab()"
+      [disabled]="tab.disabled"
+      (click)="onTabClick(tab)"
+    >
+      {{ tab.label }}
+    </button>
+
+  }
+
+</div>

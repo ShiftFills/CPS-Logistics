@@ -1,0 +1,606 @@
+.table-wrapper {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  font-family: var(--font-family);
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+
+    /* =========================
+       TABLE HEADER
+       ========================= */
+
+    thead {
+      tr {
+        background-color: var(--color-header-bg);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      th {
+        padding:
+          var(--table-header-cell-padding-y, var(--table-cell-padding-y))
+          var(--table-header-cell-padding-x, var(--table-cell-padding-x));
+        font-size: var(--table-header-font-size);
+        font-weight: var(--font-weight-semibold);
+        color: var(--color-table-header);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        background-color: var(--color-header-bg);
+      }
+
+      th.header-wrap {
+        white-space: normal;
+      }
+    }
+
+    /* =========================
+       TABLE BODY
+       ========================= */
+
+    tbody {
+      tr.table-row {
+        border-bottom: 1px solid var(--color-border);
+        transition: background-color 0.15s ease;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background-color: var(--color-hover-bg);
+        }
+
+        &.row-selected {
+          background-color: var(--color-accent-soft);
+        }
+      }
+
+      td {
+        padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+        font-size: var(--table-body-font-size);
+        color: var(--color-text);
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  /* =========================
+     CELL STYLES
+     ========================= */
+
+  .cell-link {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-accent-hover);
+      text-decoration: underline;
+    }
+  }
+
+  .cell-text {
+    color: var(--color-text);
+  }
+
+  /* =========================
+     BADGES
+     ========================= */
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+
+    font-size: var(--badge-font-size);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+
+    &.badge-in-progress {
+      background-color: var(--badge-blue-bg);
+      color: var(--badge-blue-text);
+    }
+
+    &.badge-follow-up {
+      background-color: var(--badge-orange-bg);
+      color: var(--badge-orange-text);
+    }
+
+    &.badge-new {
+      background-color: var(--badge-yellow-bg);
+      color: var(--badge-yellow-text);
+    }
+
+    &.badge-high {
+      background-color: var(--badge-red-bg);
+      color: var(--badge-red-text);
+    }
+
+    &.badge-medium {
+      background-color: var(--badge-blue-bg);
+      color: var(--badge-blue-text);
+    }
+
+    &.badge-low {
+      background-color: var(--badge-gray-bg);
+      color: var(--badge-gray-text);
+    }
+
+    &.badge-gray {
+      background-color: var(--badge-gray-bg);
+      color: var(--badge-gray-text);
+    }
+  }
+
+  /* =========================
+     ACTION MENU
+     ========================= */
+
+  .action-menu-container {
+    position: relative;
+    display: inline-block;
+
+    .action-trigger-btn {
+      background: transparent;
+      border: none;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: var(--color-hover-bg);
+        color: var(--color-text);
+      }
+    }
+  }
+
+  /* =========================
+     EMPTY / LOADING STATE
+     ========================= */
+
+  .state-cell {
+    text-align: center;
+    padding: 32px;
+    color: var(--color-text-muted);
+
+    .spinner {
+      display: inline-block;
+
+      width: 16px;
+      height: 16px;
+
+      border: 2px solid var(--color-border);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+
+      animation: spin 0.8s linear infinite;
+
+      margin-right: 8px;
+    }
+  }
+}
+
+.action-popover {
+  width: max-content;
+  min-width: 0;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  padding: 6px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-popover);
+
+  .popover-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: none;
+    background: transparent;
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--color-action);
+    text-align: left;
+    cursor: pointer;
+
+    .icon {
+      flex: 0 0 11px;
+      width: 11px;
+      height: 11px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      font-size: 11px;
+      line-height: 1;
+      padding: 0;
+    }
+
+    span {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background-color: var(--color-hover-bg);
+    }
+
+    &.danger {
+      color: var(--color-danger);
+    }
+  }
+}
+
+/* =========================
+   SPINNER
+   ========================= */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.second-column {
+
+  .cell-text,
+  .cell-link {
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.custom-table th[draggable="true"] {
+  cursor: grab;
+}
+
+.custom-table th[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.header-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: -6px;
+
+  width: 12px;
+  height: 100%;
+
+  cursor: col-resize;
+  z-index: 20;
+}
+
+.resize-handle::after {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: 1px;
+  height: 100%;
+
+  transform: translateX(-50%);
+
+  background: var(--color-column-resize);
+  border-radius: 2px;
+
+  opacity: 0.5;
+}
+
+.resize-handle:hover::after {
+  background: var(--color-column-resize-hover);
+  opacity: 1;
+}
+
+.action-trigger-btn {
+  color: var(--color-text);
+}
+
+.popover-item {
+  color: var(--color-text);
+
+  .icon {
+    padding: 3px;
+    color: var(--color-text);
+  }
+}
+
+.sortable-header app-sort-header {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.sortable-header:hover app-sort-header {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================
+   EMBEDDED (dashboard cards)
+   ========================= */
+
+.table-wrapper.table-wrapper--embedded {
+  // the dashboard card already provides the border, radius and shadow
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+
+  .custom-table {
+
+    // tinted header row, same look as the other dashboard tables
+    thead {
+      tr {
+        background-color: var(--color-header-bg);
+        border: 0;
+        border-top: 1px solid var(--color-table-header-border);
+        border-bottom: 1px solid var(--color-table-header-border);
+      }
+
+      th {
+        padding:
+          var(--table-header-cell-padding-y, 10px)
+          var(--table-header-cell-padding-x, 12px);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--color-text-subtle);
+        background-color: var(--color-header-bg);
+      }
+    }
+
+    // taller rows, lighter dividers
+    tbody {
+      tr.table-row {
+        border-bottom: 1px solid var(--color-divider-soft);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        padding:
+          var(--table-cell-padding-y, 18px)
+          var(--table-cell-padding-x, 25px);
+        font-size: 0.8125rem;
+        color: var(--color-card-title);
+      }
+    }
+  }
+
+  // header text follows the column alignment (the base header is a flex row)
+  .header-content {
+    gap: 6px;
+
+    &[data-align='center'] {
+      justify-content: center;
+    }
+
+    &[data-align='right'] {
+      justify-content: flex-end;
+    }
+  }
+
+  .cell-text {
+    color: var(--color-card-title);
+    font-weight: 500;
+  }
+
+  // the base table bolds the 2nd column; in this variant, bold is opt-in
+  .second-column .cell-text,
+  .second-column .cell-link {
+    font-weight: 500;
+  }
+
+  // opt-in via ColumnDef: cellClass: 'cell-strong'  (e.g. customer name)
+  .cell-strong .cell-text,
+  .cell-strong .cell-link {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  // opt-in via ColumnDef: cellClass: 'cell-small'  (e.g. dates, ids)
+  .cell-small .cell-text,
+  .cell-small .cell-link {
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  // link cells keep the accent colour but read as a semibold id
+  .cell-small .cell-link {
+    font-weight: 600;
+  }
+
+  // compact, softer action menu (embedded tables only)
+  .action-popover {
+    min-width: 150px;
+    padding: 4px;
+    border: 0;
+    border-radius: 10px;
+
+    .popover-item {
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.6875rem;
+      color: var(--color-action);
+
+      &.danger {
+        color: var(--color-danger);
+      }
+    }
+  }
+
+  // mobile: slightly tighter cells; the table scrolls sideways inside the card
+  @media (max-width: 575.98px) {
+    .custom-table tbody td {
+      padding: 14px 10px;
+    }
+  }
+}
+
+/* =========================
+   DOT COLUMN (type: 'dot')
+   ========================= */
+
+.dot-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--color-text-subtle); // fallback when no colour is given
+}
+
+/* =========================
+   PROGRESS COLUMN (type: 'progress')
+   ========================= */
+
+.rate-track {
+  width: 100%;
+  min-width: 80px;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--color-control-bg);
+  overflow: hidden;
+}
+
+.rate-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-accent-gradient-start), var(--color-accent));
+  transform-origin: left center;
+  animation: growBar 0.8s ease-out both;
+}
+
+@keyframes growBar {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rate-fill {
+    animation: none;
+  }
+}
+
+/* =========================
+   STATUS PILLS
+   ========================= */
+
+.table-wrapper .badge {
+  &.badge-pill-rose {
+    background-color: var(--pill-rose-bg);
+    color: var(--pill-rose-text);
+  }
+
+  &.badge-pill-orange {
+    background-color: var(--pill-orange-bg);
+    color: var(--pill-orange-text);
+  }
+
+  &.badge-pill-green {
+    background-color: var(--pill-green-bg);
+    color: var(--pill-green-text);
+  }
+
+  &.badge-pill-blue {
+    background-color: var(--pill-blue-bg);
+    color: var(--pill-blue-text);
+  }
+
+  &.badge-pill-purple {
+    background-color: var(--pill-purple-bg);
+    color: var(--pill-purple-text);
+  }
+}
+
+// Rounder, roomier badges inside dashboard cards
+.table-wrapper.table-wrapper--embedded .badge {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+/* =========================
+   STICKY ACTIONS COLUMN
+   ========================= */
+
+.custom-table th.sticky-end,
+.custom-table td.sticky-end {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background-color: var(--color-card-bg);
+}
+
+.custom-table th.sticky-end {
+  background-color: var(--color-header-bg);
+  z-index: 3;
+}
+
+// keep the row hover tint on the pinned cell
+.custom-table tr.table-row:hover td.sticky-end {
+  background-color: var(--color-hover-bg);
+}
+
+// the open menu must paint above the pinned cells of the rows below it
+.custom-table td.sticky-end.popover-open {
+  z-index: 10;
+}
+
+// subtle edge so scrolled content doesn't visually run into the pinned column
+.custom-table td.sticky-end,
+.custom-table th.sticky-end {
+  box-shadow: -6px 0 6px -6px rgba(0, 0, 0, 0.08);
+}
+
+  .badge.cell-pill {
+    margin-left: 8px;
+    padding: 2px 10px;
+    font-size: 11px;
+    vertical-align: middle;
+  }

@@ -1,0 +1,31 @@
+export interface ClientMaster {
+  id?: number;
+  branchId: number | null;
+  branchName: string;
+  clientName: string;
+  country: string;
+  code: string;
+  city: string;
+  address: string;
+  pincode: string;
+  isActive: boolean;
+  companyName: string;
+  panNo: string;
+  gstNo: string;
+  referredBy: string;
+  username: string;
+  password: string;
+  gstBillStatus: boolean;
+  contactPerson1: string;
+  contactPerson2: string;
+  operationalEmail1: string;
+  operationalEmail2: string;
+  contactNumber1: string;
+  contactNumber2: string;
+  category: string;
+  cpsFollowUpPerson: string;
+  paymentMode: string;
+  remarks: string;
+  accountContact?: string;
+  accountContactNo?: string;
+}

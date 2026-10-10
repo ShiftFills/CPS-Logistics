@@ -1,0 +1,55 @@
+.leads-card {
+  background: var(--color-card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-card);
+
+  &__header {
+    position: relative; // anchors the absolute .filter-wrapper
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--card-padding) var(--card-padding) 16px;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-heading);
+    }
+
+    .subtitle {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--color-text-subtle);
+    }
+  }
+
+  &__footer {
+    padding: 0 var(--card-padding) 20px;
+  }
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: var(--button-font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-hover-bg);
+  }
+}
+
+.filter-wrapper {
+  position: absolute;
+  top: calc(100% - 8px);
+  right: var(--card-padding);
+  z-index: 100;
+}

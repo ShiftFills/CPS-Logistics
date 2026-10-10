@@ -1,0 +1,19 @@
+<div class="kpi" [attr.data-tone]="tone()">
+  <div class="kpi__icon">
+    <img [src]="iconSrc()" alt="" aria-hidden="true" />
+  </div>
+
+  <div class="kpi__body">
+    <div class="kpi__value">{{ value() }}</div>
+    <div class="kpi__label">{{ label() }}</div>
+
+       @if (trend() !== null) {
+      <div class="kpi__trend">
+        <img class="kpi__arrow" [class.down]="trendDirection() === 'down'"
+             src="assets/icons/up-arrow.svg" alt="" aria-hidden="true" />
+        <span class="visually-hidden">{{ trendDirection() === 'up' ? 'Up' : 'Down' }}</span>
+        {{ trend() }} {{ trendNote() }}
+      </div>
+    }
+  </div>
+</div>

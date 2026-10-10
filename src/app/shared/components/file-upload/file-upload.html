@@ -1,0 +1,111 @@
+<div class="file-upload">
+
+  @if (label()) {
+    <label class="upload-label">
+      {{ label() }}
+    </label>
+  }
+
+  @if (compact()) {
+
+     <div class="upload-compact" [class.disabled]="disabled()" [class.invalid]="!!error()">
+
+      <label class="choose-btn">
+        <input
+          #fileInput
+          type="file"
+          [accept]="accept()"
+          [disabled]="disabled()"
+          (change)="onFileChange($event)"
+        />
+        Choose file
+      </label>
+
+      <span class="compact-name" [class.empty]="!currentName">
+        {{ currentName || 'No file chosen' }}
+      </span>
+
+      @if (viewLabel() && fileName() && !selectedFiles.length) {
+        <button type="button" class="view-link" (click)="viewClick.emit()">
+          {{ viewLabel() }}
+        </button>
+      }
+
+    </div>
+
+  } @else {
+
+    <label
+      class="upload-area"
+      [class.disabled]="disabled()"
+    >
+
+      <input
+        type="file"
+        [accept]="accept()"
+        [multiple]="multiple()"
+        [disabled]="disabled()"
+        (change)="onFileChange($event)"
+      />
+
+      <div class="upload-content">
+
+        <span class="upload-icon">
+          📎
+        </span>
+
+        <span class="upload-text">
+          Choose File
+        </span>
+
+        <span class="upload-hint">
+          Maximum file size: {{ maxSize() }} MB
+        </span>
+
+      </div>
+
+    </label>
+
+    @if (selectedFiles.length > 0) {
+
+      <div class="file-list">
+
+        @for (
+          file of selectedFiles;
+          track file.name;
+          let i = $index
+        ) {
+
+          <div class="file-item">
+
+            <span class="file-name">
+              {{ file.name }}
+            </span>
+
+            <span class="file-size">
+              {{ (file.size / 1024 / 1024).toFixed(2) }} MB
+            </span>
+
+            <button
+              type="button"
+              class="remove-button"
+              [disabled]="disabled()"
+              (click)="removeFile(i)"
+            >
+              ×
+            </button>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  }
+
+</div>
+  @if (error()) {
+    <span class="field-error" role="alert">{{ error() }}</span>
+  }

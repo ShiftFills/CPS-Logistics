@@ -1,0 +1,26 @@
+.label {
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  color: var(--color-label);
+}
+
+.label-top {
+  display: block;
+}
+
+.label-left {
+  display: inline-flex;
+  align-items: center;
+  margin-right: var(--label-left-margin);
+}
+
+.label-right {
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--label-right-margin);
+}
+
+.required {
+  margin-left: var(--label-required-margin);
+  color: var(--color-label-required);
+}
